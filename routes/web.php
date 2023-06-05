@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,15 @@ Route::group([
         Route::get('/create', [UserController::class, 'create'])->name('create');
         Route::post('/store', [UserController::class, 'store'])->name('store');
         Route::post('/validateFirstStep', [UserController::class, 'validateFirstStep']);
+    });
+
+    Route::group([
+        'as' => 'clients.',
+        'prefix' => 'clients'
+    ], function () {
+        Route::get('/', [ClientController::class, 'index'])->name('index');
+        Route::get('/create', [ClientController::class, 'create'])->name('create');
+        Route::post('/store', [ClientController::class, 'store'])->name('store');
     });
 });
 
