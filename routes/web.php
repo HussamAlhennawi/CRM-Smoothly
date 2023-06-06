@@ -59,6 +59,9 @@ Route::group([
         Route::get('/', [ClientController::class, 'index'])->name('index');
         Route::get('/create', [ClientController::class, 'create'])->name('create');
         Route::post('/store', [ClientController::class, 'store'])->name('store');
+        Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('edit');
+        Route::put('/{client}/update', [ClientController::class, 'update'])->name('update');
+        Route::delete('/{client}/destroy', [ClientController::class, 'destroy'])->name('destroy');
     });
 });
 

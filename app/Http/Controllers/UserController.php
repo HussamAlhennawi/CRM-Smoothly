@@ -24,12 +24,16 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+
+
     public function index(): Factory|View|Application
     {
         $users = $this->userService->index();
 
         return view('users.index')->with(['users' => $users]);
     }
+
+
 
     public function create(): View
     {
@@ -44,13 +48,16 @@ class UserController extends Controller
         ]);
     }
 
+
+
     public function store(UserRequest $userRequest): RedirectResponse
     {
         $this->userService->store($userRequest);
 
         return redirect()->route('users.index');
-
     }
+
+
 
     public function validateFirstStep(Request $request): JsonResponse
     {

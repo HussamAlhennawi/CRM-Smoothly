@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('mobile');
             $table->string('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

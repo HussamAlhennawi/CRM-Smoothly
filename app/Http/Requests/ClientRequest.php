@@ -13,9 +13,11 @@ class ClientRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return true;
+        return request()->routeIs('clients.store')
+            ? auth()->user()->can('store', Client::class)
+            : auth()->user()->can('update', Client::find(request()->segment(2)));
     }
 
     /**
@@ -23,7 +25,7 @@ class ClientRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],
