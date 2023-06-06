@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,42 @@ Route::group([
 
 
 
-Route::get('/role', [RoleController::class, 'store'])->name('store');
-Route::get('/permission', [PermissionController::class, 'store'])->name('store');
+Route::get('/role', function () {
+    $role = Role::create([
+        'name' => 'client'
+    ]);
+});
+Route::get('/permission', function () {
+    //        $permission = Permission::create([
+//            'name' => 'projects-index'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'projects-show'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'projects-store'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'projects-update'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'projects-destroy'
+//        ]);
+
+
+
+//        $permission = Permission::create([
+//            'name' => 'clients-index'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'clients-store'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'clients-update'
+//        ]);
+//        $permission = Permission::create([
+//            'name' => 'clients-destroy'
+//        ]);
+});
 
 require __DIR__.'/auth.php';
