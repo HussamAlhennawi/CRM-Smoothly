@@ -18,7 +18,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasPermissionTo('projects-index');
     }
 
     /**
@@ -28,9 +28,9 @@ class ProjectPolicy
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Project $project)
+    public function show(User $user, Project $project)
     {
-        //
+        return $user->hasPermissionTo('projects-show');
     }
 
     /**
@@ -39,9 +39,9 @@ class ProjectPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function store(User $user)
     {
-        //
+        return $user->hasPermissionTo('projects-store');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        //
+        return $user->hasPermissionTo('projects-update');
     }
 
     /**
@@ -63,32 +63,9 @@ class ProjectPolicy
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Project $project)
+    public function destroy(User $user, Project $project)
     {
-        //
+        return $user->hasPermissionTo('projects-destroy');
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Project $project)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Project $project)
-    {
-        //
-    }
 }

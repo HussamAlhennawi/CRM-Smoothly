@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -64,6 +65,18 @@ Route::group([
         Route::put('/{client}/update', [ClientController::class, 'update'])->name('update');
         Route::delete('/{client}/destroy', [ClientController::class, 'destroy'])->name('destroy');
     });
+
+    Route::group([
+        'as' => 'projects.',
+        'prefix' => 'projects'
+    ], function () {
+        Route::get('/', [ProjectController::class, 'index'])->name('index');
+        Route::get('/create', [ProjectController::class, 'create'])->name('create');
+        Route::post('/store', [ProjectController::class, 'store'])->name('store');
+        Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit');
+        Route::put('/{project}/update', [ProjectController::class, 'update'])->name('update');
+        Route::delete('/{project}/destroy', [ProjectController::class, 'destroy'])->name('destroy');
+    });
 });
 
 //======================================================================================================
@@ -88,6 +101,8 @@ Route::get('/role', function () {
     ]);
 });
 Route::get('/permission', function () {
+
+    auth()->user()->givePermissionTo(\Spatie\Permission\Models\Permission::all()->pluck('id'));
     //        $permission = Permission::create([
 //            'name' => 'projects-index'
 //        ]);

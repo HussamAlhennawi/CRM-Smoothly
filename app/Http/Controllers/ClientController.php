@@ -87,7 +87,7 @@ class ClientController extends Controller
 
     public function destroy(Client $client): RedirectResponse
     {
-        $this->authorize('delete', $client);
+        $this->authorize('destroy', $client);
 
         $this->clientService->destroy($client);
 

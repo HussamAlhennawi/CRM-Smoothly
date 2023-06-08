@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->date('deadline_at');
+            $table->integer('status');
+            $table->foreignId('client_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

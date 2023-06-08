@@ -52,32 +52,9 @@ class ClientPolicy
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Client $client)
+    public function destroy(User $user, Client $client)
     {
         return $user->hasPermissionTo('clients-destroy');
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Client $client)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Client $client)
-    {
-        //
-    }
 }
