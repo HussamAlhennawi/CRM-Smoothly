@@ -38,13 +38,13 @@ class EditProjectForm extends Component
     /**
      * @throws AuthorizationException
      */
-    public function update(ProjectService $projectService, Project $project): Redirector
+    public function update(ProjectService $projectService): Redirector
     {
-        $this->authorize('update', $project);
+        $this->authorize('update', $this->project);
 
         $validatedData = $this->validate((new ProjectRequest())->rules());
 
-        $projectService->update($validatedData, $project);
+        $projectService->update($validatedData, $this->project);
 
         session()->flash('project-updated');
         return redirect()->route('projects.index');

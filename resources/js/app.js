@@ -6,5 +6,6 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import { Select, initTE, Modal, Ripple, Toast} from "tw-elements";
+import { initTE,
+         Select, Modal, Ripple, Toast } from "tw-elements";
 initTE({ Select, Modal, Ripple, Toast });

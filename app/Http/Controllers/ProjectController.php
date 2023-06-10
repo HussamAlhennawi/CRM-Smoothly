@@ -21,7 +21,6 @@ class ProjectController extends Controller
     }
 
 
-
     /**
      * @throws AuthorizationException
      */
@@ -29,9 +28,7 @@ class ProjectController extends Controller
     {
         $this->authorize('viewAny', Project::class);
 
-        $projects = $this->projectService->index();
-
-        return view('projects.index')->with(['projects' => $projects]);
+        return view('projects.index');
     }
 
 
@@ -60,15 +57,15 @@ class ProjectController extends Controller
 
 
 
-    /**
-     * @throws AuthorizationException
-     */
-    public function destroy(Project $project): RedirectResponse
-    {
-        $this->authorize('destroy', $project);
-
-        $this->projectService->destroy($project);
-
-        return redirect()->route('projects.index');
-    }
+//    /**
+//     * @throws AuthorizationException
+//     */
+//    public function destroy(Project $project): RedirectResponse
+//    {
+//        $this->authorize('destroy', $project);
+//
+//        $this->projectService->destroy($project);
+//
+//        return redirect()->route('projects.index');
+//    }
 }

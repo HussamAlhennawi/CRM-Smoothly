@@ -68,7 +68,6 @@ Route::group([
         Route::get('/', [ProjectController::class, 'index'])->name('index');
         Route::get('/create', [ProjectController::class, 'create'])->name('create');
         Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit');
-        Route::delete('/{project}/destroy', [ProjectController::class, 'destroy'])->name('destroy');
     });
 });
 

@@ -20,7 +20,7 @@ class ProjectRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255', 'min:7'],
             'description' => ['required', 'string'],
-            'deadline_at' => ['required', 'date', 'after:today'],
+            'deadline_at' => ['required', 'date', Rule::when(request()->route()->name === 'project.create-project-form', ['after:today'])],
             'status' => Rule::when(request()->route()->name === 'project.edit-project-form', ['required', 'integer', Rule::in(Project::STATUS)]),
             'client' => ['required', 'exists:clients,id'],
         ];

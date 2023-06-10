@@ -3,14 +3,18 @@
 namespace App\Services;
 
 use App\Models\Project;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class ProjectService
 {
 
-    public function index(): Collection
+    public function index(string $search)
     {
-        $projects = Project::all();
+        $projects = Project::when('search', function (Builder $query) use ($search) {
+            return $query->where('title', 'like', '%'.$search.'%');
+        })
+            ->paginate(10);
 
         return $projects;
     }
