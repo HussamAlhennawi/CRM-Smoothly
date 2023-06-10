@@ -37,7 +37,31 @@
                                             <tr class="border-b dark:border-neutral-500">
                                                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $loop->iteration }}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">{{ $project->title }}</td>
-                                                <td class="whitespace-nowrap px-6 py-4">{{ $project->status }}</td>
+
+                                                <td class="whitespace-nowrap px-6 py-4">
+                                                    <span class="border p-1 rounded  text-white text-sm
+                                                    @switch($project->status)
+                                                        @case(1)
+                                                            bg-green-300
+                                                        @break
+
+                                                        @case(2)
+                                                            bg-yellow-300
+                                                        @break
+
+                                                        @case(3)
+                                                            bg-rose-500
+                                                        @break
+
+                                                        @default
+                                                            bg-green-300
+                                                    @endswitch
+
+                                                    ">
+                                                        {{ array_search ($project->status, \App\Models\Project::STATUS) }}
+                                                    </span>
+                                                </td>
+
                                                 <td class="whitespace-nowrap px-6 py-4">{{ $project->client->name }}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">{{ $project->deadline_at }}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">

@@ -2,19 +2,16 @@
 
 namespace App\Services;
 
-use App\Http\Requests\UserRequest;
 use App\Jobs\SendNewUserMail;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Permission;
 
 class UserService
 {
@@ -66,6 +63,7 @@ class UserService
 
 
         if ($user) {
+            $user->givePermissionTo(Permission::all()->pluck('id'));
             SendNewUserMail::dispatch($user);
         }
 

@@ -21,6 +21,7 @@ class ProjectController extends Controller
     }
 
 
+
     /**
      * @throws AuthorizationException
      */
@@ -32,6 +33,7 @@ class ProjectController extends Controller
 
         return view('projects.index')->with(['projects' => $projects]);
     }
+
 
 
     /**
@@ -46,14 +48,6 @@ class ProjectController extends Controller
 
 
 
-//    public function store(ProjectRequest $projectRequest): RedirectResponse
-//    {
-//        $this->projectService->store($projectRequest);
-//
-//        return redirect()->route('projects.index');
-//    }
-
-
     /**
      * @throws AuthorizationException
      */
@@ -64,14 +58,6 @@ class ProjectController extends Controller
         return view('projects.edit')->with(['project' => $project]);
     }
 
-
-
-//    public function update(ProjectRequest $projectRequest, Project $project): RedirectResponse
-//    {
-//        $this->projectService->update($projectRequest, $project);
-//
-//        return redirect()->route('projects.index');
-//    }
 
 
     /**
