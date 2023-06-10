@@ -72,9 +72,9 @@ Route::group([
     ], function () {
         Route::get('/', [ProjectController::class, 'index'])->name('index');
         Route::get('/create', [ProjectController::class, 'create'])->name('create');
-        Route::post('/store', [ProjectController::class, 'store'])->name('store');
+//        Route::post('/store', [ProjectController::class, 'store'])->name('store');
         Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit');
-        Route::put('/{project}/update', [ProjectController::class, 'update'])->name('update');
+//        Route::put('/{project}/update', [ProjectController::class, 'update'])->name('update');
         Route::delete('/{project}/destroy', [ProjectController::class, 'destroy'])->name('destroy');
     });
 });

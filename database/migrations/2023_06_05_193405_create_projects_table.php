@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Project;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('deadline_at');
-            $table->integer('status');
+            $table->integer('status')->default(Project::STATUS['ACTIVE']);
             $table->foreignId('client_id')->constrained();
             $table->softDeletes();
             $table->timestamps();

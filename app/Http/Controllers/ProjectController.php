@@ -46,13 +46,12 @@ class ProjectController extends Controller
 
 
 
-    public function store(ProjectRequest $projectRequest): RedirectResponse
-    {
-        $this->projectService->store($projectRequest);
-
-        return redirect()->route('projects.index');
-
-    }
+//    public function store(ProjectRequest $projectRequest): RedirectResponse
+//    {
+//        $this->projectService->store($projectRequest);
+//
+//        return redirect()->route('projects.index');
+//    }
 
 
     /**
@@ -67,18 +66,20 @@ class ProjectController extends Controller
 
 
 
-    public function update(ProjectRequest $projectRequest, Project $project): RedirectResponse
-    {
-        $this->projectService->update($projectRequest, $project);
+//    public function update(ProjectRequest $projectRequest, Project $project): RedirectResponse
+//    {
+//        $this->projectService->update($projectRequest, $project);
+//
+//        return redirect()->route('projects.index');
+//    }
 
-        return redirect()->route('projects.index');
-    }
 
-
-
+    /**
+     * @throws AuthorizationException
+     */
     public function destroy(Project $project): RedirectResponse
     {
-        $this->authorize('delete', $project);
+        $this->authorize('destroy', $project);
 
         $this->projectService->destroy($project);
 

@@ -134,4 +134,17 @@
         </div>
     </div>
 
+    @if (session()->has('project-added'))
+        <x-toaster title="Success"
+                   message="Project Added !!!"
+                   backgroundColor="bg-green-200" />
+    @endif
+
+    @if (session()->has('project-updated'))
+        <x-toaster title="Success"
+                   message="Project Updated !!!"
+                   backgroundColor="bg-green-200" />
+    @endif
+
+
 </x-app-layout>
