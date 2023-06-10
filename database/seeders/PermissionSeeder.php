@@ -16,16 +16,16 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => 'projects-index'],
-            ['name' => 'projects-show'],
-            ['name' => 'projects-store'],
-            ['name' => 'projects-update'],
-            ['name' => 'projects-destroy'],
+            ['name' => 'projects-index', 'guard_name' => 'web'],
+            ['name' => 'projects-show', 'guard_name' => 'web'],
+            ['name' => 'projects-store', 'guard_name' => 'web'],
+            ['name' => 'projects-update', 'guard_name' => 'web'],
+            ['name' => 'projects-destroy', 'guard_name' => 'web'],
 
-            ['name' => 'clients-index'],
-            ['name' => 'clients-store'],
-            ['name' => 'clients-update'],
-            ['name' => 'clients-destroy'],
+            ['name' => 'clients-index', 'guard_name' => 'web'],
+            ['name' => 'clients-store', 'guard_name' => 'web'],
+            ['name' => 'clients-update', 'guard_name' => 'web'],
+            ['name' => 'clients-destroy', 'guard_name' => 'web'],
         ];
 
         Permission::insert($data);
