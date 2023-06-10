@@ -34,8 +34,8 @@ class SendNewUserMail implements ShouldQueue
      */
     public function handle()
     {
-        $admins = User::admins()->get();
+//        $admins = User::admins()->get();
 
-        Mail::to($admins)->send(new WelcomeMail($this->user));
+        Mail::to($this->user)->send(new WelcomeMail());
     }
 }

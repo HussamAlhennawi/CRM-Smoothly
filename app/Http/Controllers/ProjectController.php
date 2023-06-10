@@ -2,85 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use App\Services\ProjectService;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public ProjectService $projectService;
+
+    public function __construct(ProjectService $projectService)
     {
-        //
+        $this->projectService = $projectService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProjectRequest  $request
-     * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
-    public function store(StoreProjectRequest $request)
+    public function index(): Factory|View|Application
     {
-        //
+        $this->authorize('viewAny', Project::class);
+
+        $projects = $this->projectService->index();
+
+        return view('projects.index')->with(['projects' => $projects]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Project $project)
-    {
-        //
-    }
+
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
-    public function edit(Project $project)
+    public function create(): View
     {
-        //
+        $this->authorize('store', Project::class);
+
+        return view('projects.create');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProjectRequest  $request
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProjectRequest $request, Project $project)
-    {
-        //
-    }
+
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
-    public function destroy(Project $project)
+    public function edit(Project $project): View
     {
-        //
+        $this->authorize('update', $project);
+
+        return view('projects.edit')->with(['project' => $project]);
+    }
+
+
+
+    /**
+     * @throws AuthorizationException
+     */
+    public function destroy(Project $project): RedirectResponse
+    {
+        $this->authorize('destroy', $project);
+
+        $this->projectService->destroy($project);
+
+        return redirect()->route('projects.index');
     }
 }

@@ -2,20 +2,24 @@
 
 namespace Database\Seeders;
 
-use App\Models\Client;
-use Database\Factories\ClientFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
-class ClientSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
-        Client::factory(10)->create();
+        $data = [
+            ['name' => 'admin'],
+            ['name' => 'user'],
+        ];
+
+        Role::insert($data);
     }
 }
