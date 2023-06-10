@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
 
         $user->givePermissionTo(Permission::all()->pluck('id'));
 
+
         event(new Registered($user));
 
         Auth::login($user);
